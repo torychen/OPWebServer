@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import service.SubmitQuestionService;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import util.*;
 
 /**
  * Servlet implementation class SubmitQuestionAction
@@ -45,14 +48,30 @@ public class SubmitQuestionAction extends HttpServlet {
 
 		String path = request.getContextPath();
 
-		PrintWriter out = response.getWriter();
-		String body = request.getParameter("body");
+		
 		// request.getParameter("字符串");
 		// 这个字符串是html表单的名字
 		// 使用request.getParameter可以获得表单传过来的值
+		String body = request.getParameter("body");
+		if (Util.isEmpty(body)) {
+			return;
+		}
+		
+		//Create 
 		
 		String answer = request.getParameter("answer");
 		String submitter = request.getParameter("submitter");
+		String knower = request.getParameter("knower");
+		String datetime = request.getParameter("datetime");
+		if (datetime == null || datetime == "") {
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+			datetime = df.format(new Date());
+			System.out.println(datetime);
+		}
+		
+		String language = request.getParameter("language");
+		String sort = request.getParameter("sort");
+		String company = request.getParameter("company");
 
 		List<Object> param = new ArrayList<Object>();
 		param.add(body);
@@ -63,6 +82,7 @@ public class SubmitQuestionAction extends HttpServlet {
 //			response.sendRedirect(path + "/index.jsp");// 重定向就是要重新回到主界面
 //		}
 		
+		PrintWriter out = response.getWriter();
 		out.println(
                 "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" +" +
                           "http://www.w3.org/TR/html4/loose.dtd\">\n" +
@@ -76,6 +96,7 @@ public class SubmitQuestionAction extends HttpServlet {
                           "<style= \"font-size=\"12px\" color='black'\"" + "\">" +
                             "Username: " + submitter + " <br> " + 
                             "Body: " + body +
+                            "datetime:" + datetime +
                         "</font></body> \n" +
                       "</html>" 
                 );
