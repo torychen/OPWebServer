@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="android_xf_project"
+  id="myeclipse.1406864012415"
+  context-root="/android_xf_project"
+  j2ee-spec="5.0"
+  archive="android_xf_project.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name></display-name>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>RegisterAction</servlet-name>
+		<servlet-class>register.action.RegisterAction</servlet-class>
+		<!-- servlet-class表示的是执行注册服务的类 也就是把网页上的数据发到这个类中 -->
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>LoginAction</servlet-name>
+		<servlet-class>login.action.LoginAction</servlet-class>
+	</servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ProductAction</servlet-name>
+    <servlet-class>product.action.ProductAction</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ProductJsonAction</servlet-name>
+    <servlet-class>product.json.ProductJsonAction</servlet-class>
+  </servlet>
+
+
+
+
+	<servlet-mapping>
+		<servlet-name>RegisterAction</servlet-name>
+		<url-pattern>/servlet/RegisterAction</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LoginAction</servlet-name>
+		<url-pattern>/servlet/LoginAction</url-pattern>
+	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProductAction</servlet-name>
+    <url-pattern>/servlet/ProductAction</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProductJsonAction</servlet-name>
+    <url-pattern>/servlet/ProductJsonAction</url-pattern>
+  </servlet-mapping>
+
+	<filter>
+		<filter-name>MyFilter</filter-name>
+		<filter-class>Filter.MyFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>MyFilter</filter-name>
+		<url-pattern>/main.jsp</url-pattern>
+	</filter-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
