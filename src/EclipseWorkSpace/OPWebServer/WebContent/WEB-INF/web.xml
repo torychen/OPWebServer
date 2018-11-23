@@ -8,5 +8,17 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
+    <welcome-file>submitQuestion.jsp</welcome-file>
   </welcome-file-list>
+
+	<servlet>
+		<servlet-name>SubmitQuestionAction</servlet-name>
+		<servlet-class>action.SubmitQuestionAction</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SubmitQuestionAction</servlet-name>
+		<url-pattern>/submitQuestion</url-pattern>
+	</servlet-mapping>  
 </web-app>
+
