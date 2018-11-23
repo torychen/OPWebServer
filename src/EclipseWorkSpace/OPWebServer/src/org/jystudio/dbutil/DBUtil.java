@@ -125,7 +125,7 @@ public class DBUtil implements IDBUtil {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean UpdateByPreparedStatement(String sql, List<Object> params)
+	public boolean updateByPreparedStatement(String sql, List<Object> params)
 			throws SQLException {
 		boolean flag = false;
 		int result = -1;// 表示数据库中操作影响的行数
