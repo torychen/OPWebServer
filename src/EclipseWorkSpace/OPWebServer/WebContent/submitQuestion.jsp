@@ -52,21 +52,6 @@
 			</p>
 			
 			<p>
-				<label for="language">编程语言:</label> <input type="text"
-					id="language" name="language" align="left" value="java">
-			</p>
-			
-			<p>
-				<label for="sort">分类</label> <input type="text"
-					id="sort" name="sort" align="left" value="数据结构">
-			</p>
-			
-			<p>
-				<label for="company">公司出题</label> <input type="text"
-					id="company" name="company" align="left" value="网络收集学习用">
-			</p>
-			
-			<p>
 				<input type="submit">
 			</p>
 		</fieldset>
