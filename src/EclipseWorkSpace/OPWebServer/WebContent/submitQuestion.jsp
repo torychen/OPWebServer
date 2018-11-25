@@ -32,7 +32,7 @@
 
 <body>
 	<!-- my implementation -->
-	<form action="submitQuestion" method="post">
+	<form action="submitQuestion" method="post" accept-charset="UTF-8">
 		<fieldset>
 			<p>
 				<label for="body">我的问题是(必填):</label>
@@ -52,7 +52,7 @@
 			</p>
 			
 			<p>
-				<input type="submit">
+				<input type="submit" value="提交">
 			</p>
 		</fieldset>
 	</form>

@@ -36,10 +36,10 @@ CREATE TABLE `question` (
   `answer` varchar(1000) DEFAULT NULL COMMENT '答案',
   `img` blob,
   `heat` int(1) unsigned zerofill DEFAULT '1' COMMENT '最近被问到的次数',
-  `syncflag1` int(1) DEFAULT '0' COMMENT '同步标记1',
-  `syncflag2` int(1) DEFAULT '0' COMMENT '同步标记2',
+  `syncflag` int(1) DEFAULT '0' COMMENT '同步标记1',
+  `duplicate` int(1) DEFAULT '0' COMMENT '是否是重复的问题',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE `question` (
 
 LOCK TABLES `question` WRITE;
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
-INSERT INTO `question` VALUES (1,'小明','我不知道',NULL,'java',NULL,NULL,1,'0','单链表插入节点',NULL,NULL,0,NULL,NULL);
+INSERT INTO `question` VALUES (1,'小明','我不知道',NULL,'java',NULL,NULL,1,'0','单链表插入节点',NULL,NULL,0,NULL,NULL),(2,'admin','我不知道','2018-11-24 17:41:47','java',NULL,NULL,1,'0','Linux内存分配','我不知道',NULL,1,0,0),(3,'小明','我不知道','2018-11-24 17:48:38','java',NULL,NULL,1,'0','TCP 拥塞避免','我不知道',NULL,1,0,0),(11,'小明','我不知道','2018-11-25 22:22:59','java',NULL,NULL,1,'0','Fragment 为什么被称为第5大组件','我不知道',NULL,1,0,0);
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,4 +86,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-23 16:36:45
+-- Dump completed on 2018-11-25 22:27:42

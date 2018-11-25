@@ -46,28 +46,31 @@ public class SubmitQuestionAction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
-		System.out.println("enter doPost()");
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		
 
-		// request.getParameter("×Ö·û´®");
-		// Õâ¸ö×Ö·û´®ÊÇhtml±íµ¥µÄÃû×Ö
-		// Ê¹ÓÃrequest.getParameter¿ÉÒÔ»ñµÃ±íµ¥´«¹ıÀ´µÄÖµ
+		// request.getParameter("<name>");
 		//TODO  how to handle various input?
 		String body = request.getParameter("body");
 		if (Util.isEmpty(body)) {
 			return;
 		}
 		
+		System.out.println("Body is" + body);
+		
+		
 		String answer = request.getParameter("answer");
 		if (Util.isEmpty(answer)) {
-			answer = "ÎÒ²»ÖªµÀ";
+			answer = "na";
 		}
 		
 		String submitter = request.getParameter("submitter");
 		if (Util.isEmpty(submitter)) {
-			submitter = "Ğ¡Ã÷";
+			submitter = "xiao ming";//ä¸ºä»€ä¹ˆç”¨å°æ˜ï¼Œæ•°æ®åº“ä¸­æ˜¯ä¹±ç ï¼Ÿ
 		}
 		
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ÉèÖÃÈÕÆÚ¸ñÊ½
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String datetime = df.format(new Date());
 		System.out.println(datetime);
 		
