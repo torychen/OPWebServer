@@ -11,7 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.SubmitQuestionDao;
 import service.SubmitQuestionService;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import util.*;
 
 /**
  * Servlet implementation class SubmitQuestionAction
@@ -42,47 +46,95 @@ public class SubmitQuestionAction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		
 
-		String path = request.getContextPath();
-
-		PrintWriter out = response.getWriter();
+		// request.getParameter("<name>");
+		//TODO  how to handle various input?
 		String body = request.getParameter("body");
-		// request.getParameter("×Ö·û´®");
-		// Õâ¸ö×Ö·û´®ÊÇhtml±íµ¥µÄÃû×Ö
-		// Ê¹ÓÃrequest.getParameter¿ÉÒÔ»ñµÃ±íµ¥´«¹ıÀ´µÄÖµ
+		if (Util.isEmpty(body)) {
+			return;
+		}
+		
+		System.out.println("Body is" + body);
+		
 		
 		String answer = request.getParameter("answer");
+		if (Util.isEmpty(answer)) {
+			answer = "na";
+		}
+		
 		String submitter = request.getParameter("submitter");
-
+		if (Util.isEmpty(submitter)) {
+			submitter = "xiao ming";//ä¸ºä»€ä¹ˆç”¨å°æ˜ï¼Œæ•°æ®åº“ä¸­æ˜¯ä¹±ç ï¼Ÿ
+		}
+		
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String datetime = df.format(new Date());
+		System.out.println(datetime);
+		
 		List<Object> param = new ArrayList<Object>();
 		param.add(body);
 		param.add(answer);
 		param.add(submitter);
-		//boolean flag = Service.registerUser(param);
-//		if (flag) {
-//			response.sendRedirect(path + "/index.jsp");// ÖØ¶¨Ïò¾ÍÊÇÒªÖØĞÂ»Øµ½Ö÷½çÃæ
-//		}
+		param.add(datetime);
 		
-		out.println(
-                "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" +" +
-                          "http://www.w3.org/TR/html4/loose.dtd\">\n" +
-                      "<html> \n" +
-                        "<head> \n" +
-                          "<meta http-equiv=\"Content-Type\" content=\"text/html; " +
-                            "charset=UTF-8\"> \n" +
-                          "<title> Thanks for your submition.  </title> \n" +
-                        "</head> \n" +
-                        "<body> <div align='center'> \n" +
-                          "<style= \"font-size=\"12px\" color='black'\"" + "\">" +
-                            "Username: " + submitter + " <br> " + 
-                            "Body: " + body +
-                        "</font></body> \n" +
-                      "</html>" 
-                );
-        
-
+		
+		boolean flag = service.submitQuestion(param);
+		
+		PrintWriter out = response.getWriter();
+		
+		if (flag) {
+			//Thanks for your submission.
+			out.println(
+	                "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" +" +
+	                          "http://www.w3.org/TR/html4/loose.dtd\">\n" +
+	                      "<html> \n" +
+	                        "<head> \n" +
+	                          "<meta http-equiv=\"Content-Type\" content=\"text/html; " +
+	                            "charset=UTF-8\"> \n" +
+	                          "<title> Thanks for your submition.  </title> \n" +
+	                        "</head> \n" +
+	                        "<body> <div align='center'> \n" +
+	                          "<style= \"font-size=\"12px\" color='black'\"" + "\">" +
+	                            "Thank you for your submission at " + datetime + ". <br> " + 
+	                        "</font></body> \n" +
+	                      "</html>" 
+	                );
+	        
+		} else {
+			//Sorry for something wrong when update DB.
+			out.println(
+	                "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" +" +
+	                          "http://www.w3.org/TR/html4/loose.dtd\">\n" +
+	                      "<html> \n" +
+	                        "<head> \n" +
+	                          "<meta http-equiv=\"Content-Type\" content=\"text/html; " +
+	                            "charset=UTF-8\"> \n" +
+	                          "<title> Thanks for your submition.  </title> \n" +
+	                        "</head> \n" +
+	                        "<body> <div align='center'> \n" +
+	                          "<style= \"font-size=\"12px\" color='black'\"" + "\">" +
+	                            "Sorry. Fail to submit. Please try again later." + " <br> " + 
+	                        "</font></body> \n" +
+	                      "</html>" 
+	                );
+		}
+	
+		
 		out.flush();
 		out.close();
+	}
+	
+	/**
+	 * Initialization of the servlet. <br>
+	 * 
+	 * @throws ServletException
+	 *             if an error occurs
+	 */    
+	public void init() throws ServletException {
+		service = new SubmitQuestionDao();
 	}
 
 }
