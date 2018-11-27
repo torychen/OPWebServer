@@ -174,6 +174,8 @@ public class DBUtil implements IDBUtil {
 				}
 				list.add(map);
 			} 
+		} else {
+			System.out.println("no date return from db.");
 		}
 		
 		return list;

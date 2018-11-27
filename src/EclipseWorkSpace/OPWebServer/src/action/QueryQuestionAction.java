@@ -1,6 +1,7 @@
 package action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +55,8 @@ public class QueryQuestionAction extends HttpServlet {
 		
 		String path = request.getContextPath();
 		
-		List<Map<String, Object>> maps = service.listQuestion();
+		//List<Map<String, Object>> maps = service.listQuestion();
+		List<Map<String, Object>> maps = null;
 		
 		if ((maps == null) || (maps.size() == 0)) {
 			System.out.println("no data return!");
@@ -65,11 +67,13 @@ public class QueryQuestionAction extends HttpServlet {
 			map.put("answer", "for debug purpose answer");
 			map.put("submitter", "for debug purpose submitter");
 			map.put("datetime", "for debug purpose datetime");
+			
+			maps = new ArrayList<Map<String,Object>>();
 			maps.add(map);
 		}
 		
 		request.setAttribute("listQuestion", maps);
-		request.getRequestDispatcher(path+"/queryResult.jsp").forward(request,
+		request.getRequestDispatcher("/queryResult.jsp").forward(request,
 				response);
 	}
 		
