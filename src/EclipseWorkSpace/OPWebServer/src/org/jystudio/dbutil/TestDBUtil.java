@@ -29,7 +29,7 @@ public class TestDBUtil {
 		
 		//Test add question
 		sql = "insert into question(body) values(?)";
-		params.add("µ¥Á´±í²åÈë½Úµã");
+		params.add("å•é“¾è¡¨æ’å…¥èŠ‚ç‚¹");
 		try {
 			dbUtil.updateByPreparedStatement(sql, params);
 		} catch (Exception e) {

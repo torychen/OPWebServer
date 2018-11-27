@@ -54,9 +54,7 @@ public class QueryQuestionAction extends HttpServlet {
 		
 		String path = request.getContextPath();
 		
-		List<Map<String, Object>> maps;
-		
-		maps = service.listQuestion();
+		List<Map<String, Object>> maps = service.listQuestion();
 		
 		if ((maps == null) || (maps.size() == 0)) {
 			System.out.println("no data return!");

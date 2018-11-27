@@ -18,43 +18,43 @@ import com.mysql.jdbc.Statement;
 
 public class DBUtil implements IDBUtil {
 	// ///////////////////////////////////////////////////////////////////////
-	// ÕâÀïµÄÁ½¸öÖµÊÇÓëÄãµÄÏµÍ³Ïà¹ØµÄ
-	// ¶¨ÒåÊı¾İ¿âµÄÓÃ»§Ãû
+	// è¿™é‡Œçš„ä¸¤ä¸ªå€¼æ˜¯ä¸ä½ çš„ç³»ç»Ÿç›¸å…³çš„
+	// å®šä¹‰æ•°æ®åº“çš„ç”¨æˆ·å
 	private static final String UESRNAME = "root";
-	// ¶¨ÒåÊı¾İ¿âµÄÃÜÂë
+	// å®šä¹‰æ•°æ®åº“çš„å¯†ç 
 	private static final String PASSWORD = "DB123456";
-	// ¶¨ÒåÊı¾İ¿âµÄ¼ÓÔØÇı¶¯
+	// å®šä¹‰æ•°æ®åº“çš„åŠ è½½é©±åŠ¨
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	// ·ÃÎÊÊı¾İ¿âµÄµØÖ·
+	// è®¿é—®æ•°æ®åº“çš„åœ°å€
 	private static final String URL = "jdbc:mysql://localhost:3306/op.db?useSSL=true";
 	// ///////////////////////////////////////////////////////////////////////
-	// ¶¨ÒåÊı¾İ¿âµÄÁ¬½Ó
+	// å®šä¹‰æ•°æ®åº“çš„è¿æ¥
 	private Connection connection;
-	// ¶¨ÒåÊı¾İ¿âµÄÖ´ĞĞ¶ÔÏó
+	// å®šä¹‰æ•°æ®åº“çš„æ‰§è¡Œå¯¹è±¡
 	private PreparedStatement psStatement;
-	// ¶¨Òå²éÑ¯·µ»ØµÄ½á¹û¼¯ºÏ
+	// å®šä¹‰æŸ¥è¯¢è¿”å›çš„ç»“æœé›†åˆ
 	private ResultSet resultSet;
-	// ÊµÏÖÅú´¦Àí
+	// å®ç°æ‰¹å¤„ç†
 	private Statement statement;
 
 	public DBUtil() {
 		try {
 			Class.forName(DRIVER);
-			System.out.println("×¢²áÇı¶¯³É¹¦!!!");
+			System.out.println("æ³¨å†Œé©±åŠ¨æˆåŠŸ!!!");
 			System.out.println("java.version="
 					+ System.getProperty("java.version"));
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("×¢²áÇı¶¯ error !!!");
+			System.out.println("æ³¨å†Œé©±åŠ¨ error !!!");
 		}
 	}
 
 	// ////////////////////////////////
-	// ¶¨ÒåÊı¾İ¿âµÄÁ¬½Ó
+	// å®šä¹‰æ•°æ®åº“çš„è¿æ¥
 	public boolean getConnection() {
 		boolean flag = false;
 		try {
-			// »ñµÃÒ»¸ö·µ»ØµÄ¶ÔÏó Õâ¸ö¶ÔÏóÊÇÁ¬½Óµ½ÁËÊı¾İ¿âµÄÒ»¸ö¶ÔÏó ¿ÉÒÔÓÃÕâ¸ö¶ÔÏóÀ´Á¬½ÓÊı¾İ¿â
+			// è·å¾—ä¸€ä¸ªè¿”å›çš„å¯¹è±¡ è¿™ä¸ªå¯¹è±¡æ˜¯è¿æ¥åˆ°äº†æ•°æ®åº“çš„ä¸€ä¸ªå¯¹è±¡ å¯ä»¥ç”¨è¿™ä¸ªå¯¹è±¡æ¥è¿æ¥æ•°æ®åº“
 			connection = DriverManager.getConnection(URL, UESRNAME, PASSWORD);
 			flag = true;
 		} catch (Exception e) {
@@ -71,14 +71,14 @@ public class DBUtil implements IDBUtil {
 	 */
 	public boolean deleteByBacth(String[] sql) throws SQLException {
 		boolean flag = false;
-		statement = (Statement) connection.createStatement();// ´´½¨Åú´¦Àí
+		statement = (Statement) connection.createStatement();// åˆ›å»ºæ‰¹å¤„ç†
 		if (sql != null) {
 			for (int i = 0; i < sql.length; i++) {
-				statement.addBatch(sql[i]);//Ôö¼Óµ½
+				statement.addBatch(sql[i]);//å¢åŠ åˆ°
 			}
 		}
-		int[] count = statement.executeBatch();// ·µ»Ø´¦ÀíµÄĞĞÊı
-		if (count != null) {// ÒªÊÇ·µ»ØµÄĞĞÊı²»Îª¿Õ
+		int[] count = statement.executeBatch();// è¿”å›å¤„ç†çš„è¡Œæ•°
+		if (count != null) {// è¦æ˜¯è¿”å›çš„è¡Œæ•°ä¸ä¸ºç©º
 			flag = true;
 		}
 		return flag;
@@ -98,13 +98,13 @@ public class DBUtil implements IDBUtil {
 				psStatement.setObject(index++, params.get(i));
 			}
 		}
-		resultSet = psStatement.executeQuery();// ·µ»Øµ¥Ìõ¼ÇÂ¼
-		ResultSetMetaData metaData = resultSet.getMetaData();// »ñµÃÁĞµÄĞÅÏ¢
+		resultSet = psStatement.executeQuery();// è¿”å›å•æ¡è®°å½•
+		ResultSetMetaData metaData = resultSet.getMetaData();// è·å¾—åˆ—çš„ä¿¡æ¯
 		int col_lens = metaData.getColumnCount();
 		while (resultSet.next()) {
 			for (int i = 0; i < col_lens; i++) {
-				String col_name = metaData.getColumnName(i + 1);// ÎªÊ²Ã´Ã´ÊÇi+1ÄØ
-				// ÒòÎª»¹ÓĞidºÅ
+				String col_name = metaData.getColumnName(i + 1);// ä¸ºä»€ä¹ˆä¹ˆæ˜¯i+1å‘¢
+				// å› ä¸ºè¿˜æœ‰idå·
 				Object col_values = resultSet.getObject(col_name);
 				if (col_values == "") {
 					col_values = "";
@@ -118,7 +118,7 @@ public class DBUtil implements IDBUtil {
 	}
 
 	/**
-	 * Íê³É¶ÔÊı¾İ¿âµÄÉ¾³ı Ìí¼Ó ºÍĞŞ¸ÄµÄ²Ù×÷
+	 * å®Œæˆå¯¹æ•°æ®åº“çš„åˆ é™¤ æ·»åŠ  å’Œä¿®æ”¹çš„æ“ä½œ
 	 * 
 	 * @param sql
 	 * @param params
@@ -128,17 +128,17 @@ public class DBUtil implements IDBUtil {
 	public boolean updateByPreparedStatement(String sql, List<Object> params)
 			throws SQLException {
 		boolean flag = false;
-		int result = -1;// ±íÊ¾Êı¾İ¿âÖĞ²Ù×÷Ó°ÏìµÄĞĞÊı
-		psStatement = connection.prepareStatement(sql);// »ñµÃÊı¾İ¿âÓï¾ä´«µİÓï¾äµÄ¶ÔÏó
+		int result = -1;// è¡¨ç¤ºæ•°æ®åº“ä¸­æ“ä½œå½±å“çš„è¡Œæ•°
+		psStatement = connection.prepareStatement(sql);// è·å¾—æ•°æ®åº“è¯­å¥ä¼ é€’è¯­å¥çš„å¯¹è±¡
 		int index = 1;
 		if (params != null && !params.isEmpty()) {
-			for (int i = 0; i < params.size(); i++) {// ²Ù×÷ÏàÓ¦µÄĞĞ
-				psStatement.setObject(index++, params.get(i));// ÆäÖĞ£¬µÚÒ»¸öÊÇÖ¸ÄãSQLÓï¾äÖĞµÄµÚ¼¸¸ö²ÎÊı£¬µÚ¶ş¸öÊÇÒªÉèÖÃµÄÖµ
+			for (int i = 0; i < params.size(); i++) {// æ“ä½œç›¸åº”çš„è¡Œ
+				psStatement.setObject(index++, params.get(i));// å…¶ä¸­ï¼Œç¬¬ä¸€ä¸ªæ˜¯æŒ‡ä½ SQLè¯­å¥ä¸­çš„ç¬¬å‡ ä¸ªå‚æ•°ï¼Œç¬¬äºŒä¸ªæ˜¯è¦è®¾ç½®çš„å€¼
 			}
 
 		}
-		result = psStatement.executeUpdate();// Ö´ĞĞÊı¾İ¿âÓï¾ä
-		flag = result > 0 ? true : false;// »ñµÃ·µ»ØµÄÓ°ÏìµÄĞĞÊı
+		result = psStatement.executeUpdate();// æ‰§è¡Œæ•°æ®åº“è¯­å¥
+		flag = result > 0 ? true : false;// è·å¾—è¿”å›çš„å½±å“çš„è¡Œæ•°
 		return flag;
 
 	}
@@ -159,26 +159,28 @@ public class DBUtil implements IDBUtil {
 		}
 		resultSet = psStatement.executeQuery();
 		ResultSetMetaData metaData = resultSet.getMetaData();
-		int col_lens = metaData.getColumnCount();
-		while (resultSet.next()) {
-			Map<String, Object> map = new HashMap<String, Object>();
-			for (int i = 0; i < col_lens; i++) {
+		if (resultSet != null && metaData != null) {
+			int col_lens = metaData.getColumnCount();
+			while (resultSet.next()) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				for (int i = 0; i < col_lens; i++) {
 
-				String col_name = metaData.getColumnName(i + 1);
-				Object col_values = resultSet.getObject(col_name);
-				if (col_values == null) {
-					col_values = "";
+					String col_name = metaData.getColumnName(i + 1);
+					Object col_values = resultSet.getObject(col_name);
+					if (col_values == null) {
+						col_values = "";
+					}
+					map.put(col_name, col_values);
 				}
-				map.put(col_name, col_values);
-			}
-			list.add(map);
+				list.add(map);
+			} 
 		}
-
+		
 		return list;
 	}
 
 	// /////////////////////////////////////////////////////////////////////////////////////////
-	// jdbcµÄ·â×°»úÖÆÊÇ¿ÉÒÔÓÃ·´Éä»úÖÆµÄ
+	// jdbcçš„å°è£…æœºåˆ¶æ˜¯å¯ä»¥ç”¨åå°„æœºåˆ¶çš„
 	public <T> T findSimpleRefresult(String sql, List<Object> params,
 			Class<T> cls) throws Exception {
 		T resultObject = null;
@@ -193,9 +195,9 @@ public class DBUtil implements IDBUtil {
 		}
 		resultSet = psStatement.executeQuery();
 		ResultSetMetaData metaData = resultSet.getMetaData();//
-		int lens = metaData.getColumnCount();// »ñµÃÁĞÊı
+		int lens = metaData.getColumnCount();// è·å¾—åˆ—æ•°
 		while (resultSet.next()) {
-			resultObject = cls.newInstance();// Í¨¹ı·´Éä»úÖÆ´´½¨Ò»¸öÊµÁĞ
+			resultObject = cls.newInstance();// é€šè¿‡åå°„æœºåˆ¶åˆ›å»ºä¸€ä¸ªå®åˆ—
 			for (int i = 0; i < lens; i++) {
 				String col_name = metaData.getColumnName(i + 1);
 				Object col_values = resultSet.getObject(col_name);
@@ -204,8 +206,8 @@ public class DBUtil implements IDBUtil {
 					col_values = "";
 				}
 				Field field = cls.getDeclaredField(col_name);
-				field.setAccessible(true);// ´ò¿ªjavabeanµÄprivate·ÃÎÊÈ¨ÏŞ
-				field.set(resultObject, col_values);// °Ñcol_values¸³Öµ¸øresultObject
+				field.setAccessible(true);// æ‰“å¼€javabeançš„privateè®¿é—®æƒé™
+				field.set(resultObject, col_values);// æŠŠcol_valuesèµ‹å€¼ç»™resultObject
 			}
 		}
 
@@ -239,7 +241,7 @@ public class DBUtil implements IDBUtil {
 
 				}
 				Field field = cls.getDeclaredField(col_name);//
-				field.setAccessible(true);// »ñµÃ´ÓÍâ²¿Ğ´Èëµ½ÀàÖĞprivate³ÉÔ±µÄ·½·¨
+				field.setAccessible(true);// è·å¾—ä»å¤–éƒ¨å†™å…¥åˆ°ç±»ä¸­privateæˆå‘˜çš„æ–¹æ³•
 				field.set(resultRefobject, col_values);
 
 			}
@@ -293,7 +295,7 @@ public class DBUtil implements IDBUtil {
 
 	// public static void main(String[] args) {
 	// jdbcutils jdbcutils = new jdbcutils();
-	// jdbcutils.getConnection();// »ñµÃÁ¬½Ó¶ÔÏó
+	// jdbcutils.getConnection();// è·å¾—è¿æ¥å¯¹è±¡
 	//
 	// // String sql = "insert into userinfo(username,password)  values(?,?)";
 	// // List<Object> params = new ArrayList<Object>();
@@ -307,13 +309,13 @@ public class DBUtil implements IDBUtil {
 	// // e.printStackTrace();
 	// // }
 	// // ////////////////////////////////////////////////
-	// // select * from userinfo ±íÊ¾µÄÊÇ·µ»Ø¶àĞĞ¼ÇÂ¼ select * from userinfo where
-	// // id=?±íÊ¾µÄÊÇ·µ»Øµ¥ĞĞ¼ÇÂ¼
-	// // String sql = "select * from userinfo where id=?";//µ¥ĞĞ²Ù×÷
+	// // select * from userinfo è¡¨ç¤ºçš„æ˜¯è¿”å›å¤šè¡Œè®°å½• select * from userinfo where
+	// // id=?è¡¨ç¤ºçš„æ˜¯è¿”å›å•è¡Œè®°å½•
+	// // String sql = "select * from userinfo where id=?";//å•è¡Œæ“ä½œ
 	// // List<Object> params = new ArrayList<Object>();
 	// // params.add(1);
 	//
-	// String sql = "select * from userinfo ";// ¶àĞĞ²Ù×÷
+	// String sql = "select * from userinfo ";// å¤šè¡Œæ“ä½œ
 	//
 	// try {
 	// // userinfo userinfo1 = jdbcutils.findSimpleRefresult(sql, params,
