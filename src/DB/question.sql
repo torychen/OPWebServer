@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: op.db
 Target Host: localhost
 Target Database: op.db
-Date: 2018/11/26 23:52:35
+Date: 2018/11/26 23:52:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,29 +32,9 @@ CREATE TABLE `question` (
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for user
--- ----------------------------
-CREATE TABLE `user` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT '桥墩' COMMENT '和question 表的 submitter 一一对应',
-  `password` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-
--- ----------------------------
 -- Records 
 -- ----------------------------
 INSERT INTO `question` VALUES ('1', '面试题', '单链表插入节点', '我不知道', '小明', '我不知道', '2018-11-24 17:41:40', 'java', null, null, '1', null, '1', '0', '0', '0');
 INSERT INTO `question` VALUES ('2', '面试题', 'Linux内存分配', '我不知道', 'admin', '我不知道', '2018-11-24 17:41:47', 'java', null, null, '1', null, '1', '0', '0', '0');
 INSERT INTO `question` VALUES ('3', '面试题', 'TCP 拥塞避免', '我不知道', '小明', '我不知道', '2018-11-24 17:48:38', 'java', null, null, '1', null, '1', '0', '0', '0');
 INSERT INTO `question` VALUES ('11', '面试题', 'Fragment 为什么被称为第5大组件', '我不知道', '小明', '我不知道', '2018-11-25 22:22:59', 'java', null, null, '1', null, '1', '0', '0', '0');
-INSERT INTO `user` VALUES ('1', '桥墩', '123456');
-INSERT INTO `user` VALUES ('2', 'guest', null);
-INSERT INTO `user` VALUES ('3', 'tester', null);
-INSERT INTO `user` VALUES ('4', 'test1', '123');
-INSERT INTO `user` VALUES ('5', 'test1', '123');
-INSERT INTO `user` VALUES ('6', 'test1', '123');
-INSERT INTO `user` VALUES ('7', 'test1', '123');
-INSERT INTO `user` VALUES ('8', 'test1', '123');
-INSERT INTO `user` VALUES ('9', 'test1', '123');
-INSERT INTO `user` VALUES ('10', 'test1', '123');
