@@ -27,7 +27,7 @@ public class ProductAction extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private ProductService service;// ÉêÇëÒ»¸öservice
+	private ProductService service;// ç”³è¯·ä¸€ä¸ªservice
 
 	/**
 	 * Constructor of the object.
@@ -87,9 +87,9 @@ public class ProductAction extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		String action_flag = request.getParameter("action_flag");
-		if (action_flag.equals("add")) {// ÒªÊÇÊÇÌí¼ÓµÄ²Ù×÷
+		if (action_flag.equals("add")) {// è¦æ˜¯æ˜¯æ·»åŠ çš„æ“ä½œ
 			addProduct(request, response);
-		} else if (action_flag.equals("list")) {// ÒªÊÇÊÇ²éÑ¯µÄ²Ù×÷
+		} else if (action_flag.equals("list")) {// è¦æ˜¯æ˜¯æŸ¥è¯¢çš„æ“ä½œ
 			ListProduct(request, response);
 		} else if (action_flag.equals("del")) {
 			delProduct(request, response);
@@ -109,19 +109,19 @@ public class ProductAction extends HttpServlet {
 		request.setAttribute("map", map);//
 		//System.out.println("--ViewProduct----->>"+proid);
 		//System.out.println("--ViewProduct----->>"+map.toString());
-		request.getRequestDispatcher("/product/2_1_5xs.jsp").forward(request,// ¸øÖ÷½çÃæ
+		request.getRequestDispatcher("/product/2_1_5xs.jsp").forward(request,// ç»™ä¸»ç•Œé¢
 				response);
 	}
 
 	private void delProduct(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String path = request.getContextPath();// »ñµÃÂ·¾¶
-		String[] ids = request.getParameterValues("ids");// »ñµÃproductµÄÖµ
-		boolean flag = service.deleteProduct(ids);// Ö´ĞĞÅú´¦Àí
+		String path = request.getContextPath();// è·å¾—è·¯å¾„
+		String[] ids = request.getParameterValues("ids");// è·å¾—productçš„å€¼
+		boolean flag = service.deleteProduct(ids);// æ‰§è¡Œæ‰¹å¤„ç†
 		if (flag) {
 			response.sendRedirect(path
-					+ "/servlet/ProductAction?action_flag=list");// ÖØĞÂ¶¨ÒåÁĞ±í
+					+ "/servlet/ProductAction?action_flag=list");// é‡æ–°å®šä¹‰åˆ—è¡¨
 		}
 
 	}
@@ -130,31 +130,31 @@ public class ProductAction extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// String path = request.getContextPath();
-		String proname = request.getParameter("proname");// ÏÈ´ÓrequestÖĞ»ñµÃÒ»¸ö²úÆ·µÄÃû³Æ
-		int recoderCount = service.getItemCount();// »ñµÃ¼ÇÂ¼µÄ×ÜÊı
+		String proname = request.getParameter("proname");// å…ˆä»requestä¸­è·å¾—ä¸€ä¸ªäº§å“çš„åç§°
+		int recoderCount = service.getItemCount();// è·å¾—è®°å½•çš„æ€»æ•°
 
-		int currentpager = 1;// ÉèÖÃÎªµÚÒ»Ò³
+		int currentpager = 1;// è®¾ç½®ä¸ºç¬¬ä¸€é¡µ
 		String PagerNum = request.getParameter("PagerNum");
 		if (PagerNum != null) {
 			currentpager = Integer.parseInt(PagerNum);
 		}
 		DividePage pDividePage = new DividePage(5, recoderCount, currentpager);
-		int start = pDividePage.getFormIndex();// ÏÔÊ¾ÌõÄ¿µÄ³õÊ¼Î»ÖÃ
-		int end = pDividePage.getTopager();// ÏÔÊ¾µÄÌõÊı
+		int start = pDividePage.getFormIndex();// æ˜¾ç¤ºæ¡ç›®çš„åˆå§‹ä½ç½®
+		int end = pDividePage.getTopager();// æ˜¾ç¤ºçš„æ¡æ•°
 		// ////////////////////////////////
-		// ÒÑ¾­½øĞĞÊı¾İ·ÖÒ³µÄ¼¯ºÏ
+		// å·²ç»è¿›è¡Œæ•°æ®åˆ†é¡µçš„é›†åˆ
 		List<Map<String, Object>> list = service.ListProduct(proname, start,
-				end);// ·µ»Øµ¥ĞĞµÄÊı¾İ
+				end);// è¿”å›å•è¡Œçš„æ•°æ®
 		// ////////////////////////////////////////////////////////
-		// ¸øÇëÇó·µ»ØÒ»¸öproname ºÍlist pronameÊÇ±íÊ¾µÄÊÇ²éÑ¯²úÆ·µÄÃû³Æ listÊÇ²úÆ·µÄÏêÏ¸ĞÅÏ¢
-		request.setAttribute("pDividePage", pDividePage);// °Ñ²ÎÊı´«¸øÓÃ»§
+		// ç»™è¯·æ±‚è¿”å›ä¸€ä¸ªproname å’Œlist pronameæ˜¯è¡¨ç¤ºçš„æ˜¯æŸ¥è¯¢äº§å“çš„åç§° listæ˜¯äº§å“çš„è¯¦ç»†ä¿¡æ¯
+		request.setAttribute("pDividePage", pDividePage);// æŠŠå‚æ•°ä¼ ç»™ç”¨æˆ·
 		request.setAttribute("listproduct", list);//
 		request.setAttribute("proname", proname);
 		// ///////////////////////////////////////////////////////////////////////
-		// request.getRequestDispatcher()ÊÇÇëÇó×ª·¢£¬Ç°ºóÒ³Ãæ¹²ÏíÒ»¸örequest ;
-		// response.sendRedirect()ÊÇÖØĞÂ¶¨Ïò£¬Ç°ºóÒ³Ãæ²»ÊÇÒ»¸örequest¡£
-		// request.getRequestDispather();·µ»ØµÄÊÇÒ»¸öRequestDispatcher¶ÔÏó
-		request.getRequestDispatcher("/product/2_1_5.jsp").forward(request,// ¸øÖ÷½çÃæ
+		// request.getRequestDispatcher()æ˜¯è¯·æ±‚è½¬å‘ï¼Œå‰åé¡µé¢å…±äº«ä¸€ä¸ªrequest ;
+		// response.sendRedirect()æ˜¯é‡æ–°å®šå‘ï¼Œå‰åé¡µé¢ä¸æ˜¯ä¸€ä¸ªrequestã€‚
+		// request.getRequestDispather();è¿”å›çš„æ˜¯ä¸€ä¸ªRequestDispatcherå¯¹è±¡
+		request.getRequestDispatcher("/product/2_1_5.jsp").forward(request,// ç»™ä¸»ç•Œé¢
 				response);
 	}
 
@@ -164,24 +164,24 @@ public class ProductAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		String path = request.getContextPath();
 		DiskFileItemFactory factory = new DiskFileItemFactory();// //
-																// »ùÓÚ´ÅÅÌÎÄ¼şÏîÄ¿´´½¨Ò»¸ö¹¤³§¶ÔÏó
+																// åŸºäºç£ç›˜æ–‡ä»¶é¡¹ç›®åˆ›å»ºä¸€ä¸ªå·¥å‚å¯¹è±¡
 		ServletFileUpload fileUpload = new ServletFileUpload(factory);// ; //
-																		// ´´½¨Ò»¸öĞÂµÄÎÄ¼şÉÏ´«¶ÔÏó
-		fileUpload.setFileSizeMax(3 * 1024 * 1024);// ÓÃÓÚÉèÖÃµ¥¸öÉÏ´«ÎÄ¼şµÄ×î´ó³ß´çÏŞÖÆ
-		fileUpload.setSizeMax(6 * 1024 * 1024);// ÓÃÓÚÉèÖÃÇëÇóÏûÏ¢ÊµÌåÄÚÈİ£¨¼´ËùÓĞÉÏ´«Êı¾İ£©µÄ×î´ó³ß´çÏŞÖÆ£¬ÒÔ·ÀÖ¹¿Í»§¶Ë¶ñÒâÉÏ´«³¬´óÎÄ¼şÀ´ÀË·Ñ·şÎñÆ÷¶ËµÄ´æ´¢¿Õ¼ä
+																		// åˆ›å»ºä¸€ä¸ªæ–°çš„æ–‡ä»¶ä¸Šä¼ å¯¹è±¡
+		fileUpload.setFileSizeMax(3 * 1024 * 1024);// ç”¨äºè®¾ç½®å•ä¸ªä¸Šä¼ æ–‡ä»¶çš„æœ€å¤§å°ºå¯¸é™åˆ¶
+		fileUpload.setSizeMax(6 * 1024 * 1024);// ç”¨äºè®¾ç½®è¯·æ±‚æ¶ˆæ¯å®ä½“å†…å®¹ï¼ˆå³æ‰€æœ‰ä¸Šä¼ æ•°æ®ï¼‰çš„æœ€å¤§å°ºå¯¸é™åˆ¶ï¼Œä»¥é˜²æ­¢å®¢æˆ·ç«¯æ¶æ„ä¸Šä¼ è¶…å¤§æ–‡ä»¶æ¥æµªè´¹æœåŠ¡å™¨ç«¯çš„å­˜å‚¨ç©ºé—´
 		List<Object> params = new ArrayList<Object>();
 		List<FileItem> list = null;
-		params.add(UUIDtools.getUUID());// Êı¾İ¿âÖ÷¼ü
+		params.add(UUIDtools.getUUID());// æ•°æ®åº“ä¸»é”®
 
 		try {
-			// parseRequest ·½·¨ÊÇServletFileUploadÀàµÄÖØÒª·½·¨£¬ËüÊÇ¶ÔHTTPÇëÇóÏûÏ¢ÌåÄÚÈİ½øĞĞ½âÎöµÄÈë¿Ú·½·¨¡£
-			// Ëü½âÎö³öFORM±íµ¥ÖĞµÄÃ¿¸ö×Ö¶ÎµÄÊı¾İ£¬²¢½«ËüÃÇ·Ö±ğ°ü×°³É¶ÀÁ¢µÄFileItem¶ÔÏó£¬
-			// È»ºó½«ÕâĞ©FileItem¶ÔÏó¼ÓÈë½øÒ»¸öListÀàĞÍµÄ¼¯ºÏ¶ÔÏóÖĞ·µ»Ø¡£
-			list = fileUpload.parseRequest(request);// // ½âÎöÉÏ´«ÇëÇó
+			// parseRequest æ–¹æ³•æ˜¯ServletFileUploadç±»çš„é‡è¦æ–¹æ³•ï¼Œå®ƒæ˜¯å¯¹HTTPè¯·æ±‚æ¶ˆæ¯ä½“å†…å®¹è¿›è¡Œè§£æçš„å…¥å£æ–¹æ³•ã€‚
+			// å®ƒè§£æå‡ºFORMè¡¨å•ä¸­çš„æ¯ä¸ªå­—æ®µçš„æ•°æ®ï¼Œå¹¶å°†å®ƒä»¬åˆ†åˆ«åŒ…è£…æˆç‹¬ç«‹çš„FileItemå¯¹è±¡ï¼Œ
+			// ç„¶åå°†è¿™äº›FileItemå¯¹è±¡åŠ å…¥è¿›ä¸€ä¸ªListç±»å‹çš„é›†åˆå¯¹è±¡ä¸­è¿”å›ã€‚
+			list = fileUpload.parseRequest(request);// // è§£æä¸Šä¼ è¯·æ±‚
 			// ////////////////////////////////////////////////////
-			// ÒòÎª´æÔÚ±íµ¥ºÍÍ¼Æ¬µÄÇø±ğ
+			// å› ä¸ºå­˜åœ¨è¡¨å•å’Œå›¾ç‰‡çš„åŒºåˆ«
 			for (FileItem fileitems : list) {
-				if (fileitems.isFormField()) {// ÒªÊÇÎª±íµ¥ÎÄ±¾ÄÚÈİ
+				if (fileitems.isFormField()) {// è¦æ˜¯ä¸ºè¡¨å•æ–‡æœ¬å†…å®¹
 					if (fileitems.getFieldName().equals("proname")) {
 						params.add(fileitems.getString("utf-8"));
 					}
@@ -192,23 +192,23 @@ public class ProductAction extends HttpServlet {
 						params.add(fileitems.getString("utf-8"));
 					}
 				} else {
-					String imagename = fileitems.getName();// »ñµÃÎÄ¼şµÄÃû³Æ
+					String imagename = fileitems.getName();// è·å¾—æ–‡ä»¶çš„åç§°
 					params.add(imagename);
 					@SuppressWarnings("deprecation")
-					String upload_path = request.getRealPath("/upload");// »ñµÃ·şÎñÆ÷¶ËµÄÂ·¾¶
-					System.out.println("--·şÎñÆ÷¶ËÎÄ¼şµÄÃû³Æ------>>" + upload_path);
-					File real_pathFile = new File(upload_path + "/" + imagename);// ·şÎñÆ÷¶ËµÄÂ·¾¶ºÍÎÄ¼şµÄÃû³Æ
-																					// ¾ÍÊÇÎÒµÄÍêÈ«Â·¾¶
+					String upload_path = request.getRealPath("/upload");// è·å¾—æœåŠ¡å™¨ç«¯çš„è·¯å¾„
+					System.out.println("--æœåŠ¡å™¨ç«¯æ–‡ä»¶çš„åç§°------>>" + upload_path);
+					File real_pathFile = new File(upload_path + "/" + imagename);// æœåŠ¡å™¨ç«¯çš„è·¯å¾„å’Œæ–‡ä»¶çš„åç§°
+																					// å°±æ˜¯æˆ‘çš„å®Œå…¨è·¯å¾„
 					try {
 						// ////////////////////////////////////////////////
-						fileitems.write(real_pathFile);// ½«ÉÏ´«µÄÍ¼Æ¬ÎÄ¼ş±£´æ±¨±¾µØdiskÖĞ
-						// write·½·¨ÓÃÓÚ½«FileItem¶ÔÏóÖĞ±£´æµÄÖ÷ÌåÄÚÈİ±£´æµ½Ä³¸öÖ¸¶¨µÄÎÄ¼şÖĞ¡£
-						// Èç¹ûFileItem¶ÔÏóÖĞµÄÖ÷ÌåÄÚÈİÊÇ±£´æÔÚÄ³¸öÁÙÊ±ÎÄ¼şÖĞ£¬¸Ã·½·¨Ë³ÀûÍê³Éºó£¬
-						// ÁÙÊ±ÎÄ¼şÓĞ¿ÉÄÜ»á±»Çå³ı¡£¸Ã·½·¨Ò²¿É½«ÆÕÍ¨±íµ¥×Ö¶ÎÄÚÈİĞ´Èëµ½Ò»¸öÎÄ¼şÖĞ£¬
-						// µ«ËüÖ÷ÒªÓÃÍ¾ÊÇ½«ÉÏ´«µÄÎÄ¼şÄÚÈİ±£´æÔÚ±¾µØÎÄ¼şÏµÍ³ÖĞ
+						fileitems.write(real_pathFile);// å°†ä¸Šä¼ çš„å›¾ç‰‡æ–‡ä»¶ä¿å­˜æŠ¥æœ¬åœ°diskä¸­
+						// writeæ–¹æ³•ç”¨äºå°†FileItemå¯¹è±¡ä¸­ä¿å­˜çš„ä¸»ä½“å†…å®¹ä¿å­˜åˆ°æŸä¸ªæŒ‡å®šçš„æ–‡ä»¶ä¸­ã€‚
+						// å¦‚æœFileItemå¯¹è±¡ä¸­çš„ä¸»ä½“å†…å®¹æ˜¯ä¿å­˜åœ¨æŸä¸ªä¸´æ—¶æ–‡ä»¶ä¸­ï¼Œè¯¥æ–¹æ³•é¡ºåˆ©å®Œæˆåï¼Œ
+						// ä¸´æ—¶æ–‡ä»¶æœ‰å¯èƒ½ä¼šè¢«æ¸…é™¤ã€‚è¯¥æ–¹æ³•ä¹Ÿå¯å°†æ™®é€šè¡¨å•å­—æ®µå†…å®¹å†™å…¥åˆ°ä¸€ä¸ªæ–‡ä»¶ä¸­ï¼Œ
+						// ä½†å®ƒä¸»è¦ç”¨é€”æ˜¯å°†ä¸Šä¼ çš„æ–‡ä»¶å†…å®¹ä¿å­˜åœ¨æœ¬åœ°æ–‡ä»¶ç³»ç»Ÿä¸­
 						// ///////////////////////////////////////
-						// °ÑÊı¾İ¼Óµ½Êı¾İ¿âÖĞ
-						boolean flag = service.addProduct(params);// Ò²¾ÍÊÇËµ ÎÒ¼ÓÁË²úÆ·ºó
+						// æŠŠæ•°æ®åŠ åˆ°æ•°æ®åº“ä¸­
+						boolean flag = service.addProduct(params);// ä¹Ÿå°±æ˜¯è¯´ æˆ‘åŠ äº†äº§å“å
 						if (flag) {
 							response.sendRedirect(path
 									+ "/servlet/ProductAction?action_flag=list");

@@ -24,9 +24,9 @@ public class ProductDao implements ProductService {
 		boolean flag = false;
 		try {
 			// ///////////////////////////////////////////////////
-			// ¶ÔÓÚÍ¼Æ¬µÄĞÅÏ¢ Ö»ÄÜÊÇ´æ´¢Í¼Æ¬µÄÂ·¾¶
+			// å¯¹äºå›¾ç‰‡çš„ä¿¡æ¯ åªèƒ½æ˜¯å­˜å‚¨å›¾ç‰‡çš„è·¯å¾„
 			String sql = "insert into product (proid,proname,proprice,proaddress,proimage) values(?,?,?,?,?)";
-			jdbcutil.getConnection();// Á¬½ÓÊı¾İ¿â
+			jdbcutil.getConnection();// è¿æ¥æ•°æ®åº“
 			flag = jdbcutil.UpdateByPreparedStatement(sql, params);
 
 		} catch (Exception e) {
@@ -42,23 +42,23 @@ public class ProductDao implements ProductService {
 	public List<Map<String, Object>> ListProduct(String proname, int start,
 			int end) {
 		// TODO Auto-generated method stub
-		// ²éÕÒ¶àÌõ¼ÇÂ¼
+		// æŸ¥æ‰¾å¤šæ¡è®°å½•
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		String sql = "select * from product where (1=1) ";
-		// µ±1=1Ê± ÏÔÊ¾³öproduct±íÖĞµÄËùÓĞĞÅÏ¢
-		// ÒòÎª1ÓÀÔ¶¶¼µÈÓÚ1 ËùÒÔ Õâ½«ÊÇÒ»¸öËÀÑ­»·
-		// µ±Õâ¸öÃüÁîÖ´ĞĞºó product ±íÖĞµÄÊı¾İ»áÒ»±éÓÖÒ»±éµÄ±»¶ÁÈ¡
-		// Ö±µ½ÊÀ½çÄ©ÈÕ
-		// select£¨²éÑ¯ ÏÖÊµ£©
-		// *£¨ËùÓĞÊı¾İ£©
-		// from£¨´Ó¡­¡­Àï£©
-		// where£¨µ±¡­¡­£©Ìõ¼ş
+		// å½“1=1æ—¶ æ˜¾ç¤ºå‡ºproductè¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯
+		// å› ä¸º1æ°¸è¿œéƒ½ç­‰äº1 æ‰€ä»¥ è¿™å°†æ˜¯ä¸€ä¸ªæ­»å¾ªç¯
+		// å½“è¿™ä¸ªå‘½ä»¤æ‰§è¡Œå product è¡¨ä¸­çš„æ•°æ®ä¼šä¸€éåˆä¸€éçš„è¢«è¯»å–
+		// ç›´åˆ°ä¸–ç•Œæœ«æ—¥
+		// selectï¼ˆæŸ¥è¯¢ ç°å®ï¼‰
+		// *ï¼ˆæ‰€æœ‰æ•°æ®ï¼‰
+		// fromï¼ˆä»â€¦â€¦é‡Œï¼‰
+		// whereï¼ˆå½“â€¦â€¦ï¼‰æ¡ä»¶
 		StringBuffer buffer = new StringBuffer(sql);
 		List<Object> params = new ArrayList<Object>();
 
 		if (proname != null) {
-			buffer.append(" and  proname like ? ");// ÎÊºÅ±íÊ¾µÄÊÇÕ¼Î»·û Ò²¾ÍÊÇpronameµÄÖµ
-			params.add("%" + proname + "%");// ×¢ÒâÔÚĞŞ¸ÄÁËºó Òª×¢ÒâµÄÊÇ¹ØÁËºóÔÚÆô¶¯ Òª²»È»»á³ö´í
+			buffer.append(" and  proname like ? ");// é—®å·è¡¨ç¤ºçš„æ˜¯å ä½ç¬¦ ä¹Ÿå°±æ˜¯pronameçš„å€¼
+			params.add("%" + proname + "%");// æ³¨æ„åœ¨ä¿®æ”¹äº†å è¦æ³¨æ„çš„æ˜¯å…³äº†ååœ¨å¯åŠ¨ è¦ä¸ç„¶ä¼šå‡ºé”™
 			// System.out.println("---proname--->>" + proname);
 			// System.out.println("---buffer--->>" + buffer.toString());
 		}
@@ -82,23 +82,23 @@ public class ProductDao implements ProductService {
 /////////////////////////////////////////////////////////////////////////////////////////////
 	public List<Map<String, Object>> listProduct(String proname) {
 		// TODO Auto-generated method stub
-		// ²éÕÒ¶àÌõ¼ÇÂ¼
+		// æŸ¥æ‰¾å¤šæ¡è®°å½•
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		String sql = "select * from product where (1=1) ";
-		// µ±1=1Ê± ÏÔÊ¾³öproduct±íÖĞµÄËùÓĞĞÅÏ¢
-		// ÒòÎª1ÓÀÔ¶¶¼µÈÓÚ1 ËùÒÔ Õâ½«ÊÇÒ»¸öËÀÑ­»·
-		// µ±Õâ¸öÃüÁîÖ´ĞĞºó product ±íÖĞµÄÊı¾İ»áÒ»±éÓÖÒ»±éµÄ±»¶ÁÈ¡
-		// Ö±µ½ÊÀ½çÄ©ÈÕ
-		// select£¨²éÑ¯ ÏÖÊµ£©
-		// *£¨ËùÓĞÊı¾İ£©
-		// from£¨´Ó¡­¡­Àï£©
-		// where£¨µ±¡­¡­£©Ìõ¼ş
+		// å½“1=1æ—¶ æ˜¾ç¤ºå‡ºproductè¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯
+		// å› ä¸º1æ°¸è¿œéƒ½ç­‰äº1 æ‰€ä»¥ è¿™å°†æ˜¯ä¸€ä¸ªæ­»å¾ªç¯
+		// å½“è¿™ä¸ªå‘½ä»¤æ‰§è¡Œå product è¡¨ä¸­çš„æ•°æ®ä¼šä¸€éåˆä¸€éçš„è¢«è¯»å–
+		// ç›´åˆ°ä¸–ç•Œæœ«æ—¥
+		// selectï¼ˆæŸ¥è¯¢ ç°å®ï¼‰
+		// *ï¼ˆæ‰€æœ‰æ•°æ®ï¼‰
+		// fromï¼ˆä»â€¦â€¦é‡Œï¼‰
+		// whereï¼ˆå½“â€¦â€¦ï¼‰æ¡ä»¶
 		StringBuffer buffer = new StringBuffer(sql);
 		List<Object> params = new ArrayList<Object>();
 
 		if (proname != null) {
-			buffer.append(" and  proname like ? ");// ÎÊºÅ±íÊ¾µÄÊÇÕ¼Î»·û Ò²¾ÍÊÇpronameµÄÖµ
-			params.add("%" + proname + "%");// ×¢ÒâÔÚĞŞ¸ÄÁËºó Òª×¢ÒâµÄÊÇ¹ØÁËºóÔÚÆô¶¯ Òª²»È»»á³ö´í
+			buffer.append(" and  proname like ? ");// é—®å·è¡¨ç¤ºçš„æ˜¯å ä½ç¬¦ ä¹Ÿå°±æ˜¯pronameçš„å€¼
+			params.add("%" + proname + "%");// æ³¨æ„åœ¨ä¿®æ”¹äº†å è¦æ³¨æ„çš„æ˜¯å…³äº†ååœ¨å¯åŠ¨ è¦ä¸ç„¶ä¼šå‡ºé”™
 			// System.out.println("---proname--->>" + proname);
 			// System.out.println("---buffer--->>" + buffer.toString());
 		}
@@ -132,17 +132,17 @@ public class ProductDao implements ProductService {
 		String sql = " select count(*) mycount from product ";
 		try {
 			jdbcutil.getConnection();
-			// SELECT Count(*) As MyCount FROM name Õâ¸öÓï¾äÊÇÊ²Ã´ÒâË¼
-			// count()ÊÇÒ»¸ö¾ÛºÏº¯Êı£¬nameÊÇ±íÃû¡£ÕâÌõÓï¾äÊÇÍ³¼ÆnameÕâ¸ö±íÓĞ¶àÉÙÌõÊı¾İ£¬²¢½«²é³öµÄ×ÜÊıµÄÁĞÃûÎªMyCount¡£
+			// SELECT Count(*) As MyCount FROM name è¿™ä¸ªè¯­å¥æ˜¯ä»€ä¹ˆæ„æ€
+			// count()æ˜¯ä¸€ä¸ªèšåˆå‡½æ•°ï¼Œnameæ˜¯è¡¨åã€‚è¿™æ¡è¯­å¥æ˜¯ç»Ÿè®¡nameè¿™ä¸ªè¡¨æœ‰å¤šå°‘æ¡æ•°æ®ï¼Œå¹¶å°†æŸ¥å‡ºçš„æ€»æ•°çš„åˆ—åä¸ºMyCountã€‚
 
 			map = jdbcutil.findSimpleresult(sql, null);
-			count = Integer.parseInt(map.get("mycount").toString());// °ÑmapÖĞµÄMycount×ª»¯³ÉÕûÊı
+			count = Integer.parseInt(map.get("mycount").toString());// æŠŠmapä¸­çš„Mycountè½¬åŒ–æˆæ•´æ•°
 
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		} finally {
-			jdbcutil.release();// ÊÍ·Åjdbc¶ÔÏó
+			jdbcutil.release();// é‡Šæ”¾jdbcå¯¹è±¡
 		}
 		return count;
 	}
