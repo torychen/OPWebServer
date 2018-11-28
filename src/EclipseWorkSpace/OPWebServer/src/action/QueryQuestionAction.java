@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import dao.QueryQuesionDao;
 import service.QueryQuestionService;
 import myutil.*;
-import product.utils.DividePage;
 
 /**
  * Servlet implementation class QueryQuestionAction
@@ -51,6 +50,7 @@ public class QueryQuestionAction extends HttpServlet {
 		
 		String path = request.getContextPath();
 		int recordCount = service.getRecordCount();
+		MyUtil.dbg("recordCount is " + recordCount);
 		
 		int currentPage = 1;// 设置为第一页
 		String pageNum = request.getParameter("pageNum");
@@ -65,6 +65,7 @@ public class QueryQuestionAction extends HttpServlet {
 		
 		try {
 			maps = service.listQuestion(start, pageSize);
+			MyUtil.dbg("map size is " + maps.size());
 		} catch (Exception e) {
 			System.out.println("Error when query db.");
 		}

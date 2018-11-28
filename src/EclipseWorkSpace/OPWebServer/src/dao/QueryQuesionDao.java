@@ -7,6 +7,7 @@ import java.util.Map;
 import org.jystudio.dbutil.DBUtil;
 
 import myutil.MyUtil;
+import service.MyConstant;
 import service.QueryQuestionService;
 
 public class QueryQuesionDao implements QueryQuestionService {
@@ -72,7 +73,7 @@ public class QueryQuesionDao implements QueryQuestionService {
 		int count = 0;
 		dbUtil.getConnection();
 		try {
-			count = dbUtil.getRecordCount("quesion");
+			count = dbUtil.getRecordCount(MyConstant.QUESTION_TABLE_NAME);
 		} catch (Exception e) {
 			MyUtil.dbg("Fail to getRecordCount.");
 		}
