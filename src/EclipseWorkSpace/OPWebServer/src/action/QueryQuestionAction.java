@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.QueryQuesionDao;
 import service.QueryQuestionService;
+import myutil.*;
 
 /**
  * Servlet implementation class QueryQuestionAction
@@ -71,9 +72,15 @@ public class QueryQuestionAction extends HttpServlet {
 			maps.add(map);
 		}
 		
+		int recoderCount = 5;
+		int currentpager = 1;
+		DividePage pDividePage = new DividePage(5, recoderCount, currentpager);
+		int start = pDividePage.getFormIndex();// 显示条目的初始位置
+		int end = pDividePage.getTopager();// 显示的条数
+		request.setAttribute("pDividePage", pDividePage);// 把参数传给用户
+		request.setAttribute("proname", "guest");
 		request.setAttribute("listQuestion", maps);
-		request.getRequestDispatcher("/queryResult.jsp").forward(request,
-				response);
+		request.getRequestDispatcher("/queryResult.jsp").forward(request,response);
 	}
 		
 	/**

@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@  page import="product.utils.*"%>
+<%@  page import="myutil.*"%>
 
 <%
 	String path = request.getContextPath();
@@ -12,8 +12,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
-<TITLE>后台管理系统</TITLE>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<TITLE>查询结果</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
 <META content="" name=keywords>
 <META content=name=description>
 <STYLE type=text/css>
@@ -49,7 +49,7 @@ BODY {
 	SCROLLBAR-DARKSHADOW-COLOR: #799ae1
 }
 </STYLE>
-<LINK href="<%=path%>/images/duan_1.css" type=text/css rel=stylesheet>
+
 <META content="MSHTML 6.00.2800.1106" name=GENERATOR>
 <style type="text/css">
 <!--
@@ -166,11 +166,9 @@ BODY {
 					<TD colSpan=3 height=9></TD>
 				</TR>
 				<TR>
-					<TD vAlign=top width=12 background="<%=path%>/images/dhpddw.gif"
-						rowSpan=2>&nbsp;</TD>
-					<TD width=739 background="<%=path%>/images/h-1.gif" height=9></TD>
-					<TD width=9 height=9><IMG height=9
-						src="<%=path%>/images/jiao.gif" width=9>
+					<TD vAlign=top width=12></TD>
+					<TD width=739 height=9></TD>
+					<TD width=9 height=9>
 					</TD>
 				</TR>
 				<TR>
@@ -179,14 +177,13 @@ BODY {
 							<!--DWLayoutTable-->
 							<TBODY>
 								<TR>
-									<TD vAlign=bottom width=548 height=27><IMG height=10
-										src="<%=path%>/images/jt2.gif" width=10> <span
+									<TD vAlign=bottom width=548 height=27> <span
 										class="lbt">产品管理模块&gt;&gt;产品信息_查询</span>
 									</TD>
 									<TD width=8 rowSpan=3>&nbsp;</TD>
 								</TR>
 								<TR>
-									<TD background="<%=path%>/images/ht.gif" height=22></TD>
+									<TD  height=22></TD>
 								</TR>
 								<TR>
 									<TD class=unnamed1 vAlign=top height=9>
@@ -208,17 +205,12 @@ BODY {
 								</TR>
 								<TR>
 									<TD height=27 colspan="2" align="center" vAlign=top><a
-										href="javascript:search();"> <img
-											src="<%=path%>/images/cx_1.jpg" name="Image4" width="60"
-											height="22" border="0"> </a>&nbsp; <a
-										href="<%=path%>/product/2_1_5tj.jsp"><img
-											src="<%=path%>/images/tj_1.jpg" name="Image3" width="60"
-											height="22" border="0"> </a>
+										href="javascript:search();"></a>&nbsp; <a
+										href="<%=path%>/product/2_1_5tj.jsp"></a>
 									</TD>
 								</TR>
 								<TR>
-									<TD height=94 vAlign=top><IMG height=10
-										src="<%=path%>/images/jt2.gif" width=10> <span
+									<TD height=94 vAlign=top> <span
 										class="lbt">查询结果</span> <br> <br>
 										<TABLE width="99%" border=0 cellPadding=4 cellSpacing=1
 											bgColor=#0867b3>
@@ -256,12 +248,8 @@ BODY {
 													}
 												%>
 											</TBODY>
-										</TABLE> <br> <a href="javascript:del();"><img
-											src="<%=path%>/images/sc_1.jpg" name="Image7" width="60"
-											height="22" border="0"> </a>&nbsp; 
-											<a  href="javascript:view();"><img
-											src="<%=path%>/images/ck_1.jpg" name="Image8" width="60"
-											height="22" border="0"> </a> <br>
+										</TABLE> <br> <a href="javascript:del();"> </a>&nbsp; 
+											<a  href="javascript:view();"></a> <br>
 										<table width="99%" border=0 cellpadding=4 cellspacing=1
 											bgcolor=#0867b3>
 											<!--DWLayoutTable-->
@@ -302,7 +290,7 @@ BODY {
 							</TBODY>
 						</TABLE>
 					</TD>
-					<TD width=9 background="<%=path%>/images/s-1.gif"></TD>
+					<TD width=9 ></TD>
 				</TR>
 			</TBODY>
 		</TABLE>
