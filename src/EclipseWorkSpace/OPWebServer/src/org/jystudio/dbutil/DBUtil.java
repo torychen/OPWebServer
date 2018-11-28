@@ -318,46 +318,5 @@ public class DBUtil implements IDBUtil {
 
 	}
 
-	// public static void main(String[] args) {
-	// jdbcutils jdbcutils = new jdbcutils();
-	// jdbcutils.getConnection();// 获得连接对象
-	//
-	// // String sql = "insert into userinfo(username,password)  values(?,?)";
-	// // List<Object> params = new ArrayList<Object>();
-	// // params.add("zhangsan");
-	// // params.add("12345");
-	// //
-	// // try {
-	// // boolean flag = jdbcutils.UpdateByPreparedStatement(sql, params);
-	// // System.out.println("-----UpdateByPreparedStatement------>>" + flag);
-	// // } catch (SQLException e) { // TODO Auto-generated catchblock
-	// // e.printStackTrace();
-	// // }
-	// // ////////////////////////////////////////////////
-	// // select * from userinfo 表示的是返回多行记录 select * from userinfo where
-	// // id=?表示的是返回单行记录
-	// // String sql = "select * from userinfo where id=?";//单行操作
-	// // List<Object> params = new ArrayList<Object>();
-	// // params.add(1);
-	//
-	// String sql = "select * from userinfo ";// 多行操作
-	//
-	// try {
-	// // userinfo userinfo1 = jdbcutils.findSimpleRefresult(sql, params,
-	// // userinfo.class);
-	// // System.out.println("------>>" + userinfo1);
-	//
-	// // /*List<userinfo> list = jdbcutils.findmoreRefResult(sql, null,
-	// // userinfo.class);*/
-	// // System.out.println(list);
-	//
-	// } catch (Exception e) {
-	// // TODO: handle exception
-	// e.printStackTrace();
-	// } finally {
-	// jdbcutils.release();
-	// }
-	//
-	// }
 };
 

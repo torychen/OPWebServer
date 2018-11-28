@@ -11,6 +11,7 @@ import java.util.Map;
  *
  */
 public interface IDBUtil {
+	public int getRecordCount(String tableName);
 	public boolean getConnection();
 	public Map<String, Object> findSimpleresult(String sql, List<Object> params) throws SQLException;
 	public boolean updateByPreparedStatement(String sql, List<Object> params)throws SQLException;

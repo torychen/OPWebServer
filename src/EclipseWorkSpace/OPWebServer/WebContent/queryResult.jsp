@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" import="java.util.*"
     pageEncoding="UTF-8"%>
-       
+    
+<%@  page import="myutil.*"%>
+
 <%
 	String path = request.getContextPath();
 	List<Map<String, Object>> list = (List<Map<String, Object>>) request.getAttribute("listQuestion");
+	DividePage pDividePage=(DividePage)request.getAttribute("pDividePage");
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Hello this queryResult.jsp</title>
+<title>Hello this is queryResult</title>
 <style>
 th, tr, td, table {
 	border: 1px solid black;
@@ -72,7 +75,7 @@ th, tr, td, table {
 		<a href="javascript:login();">上一页</a>
 		<a href="javascript:login();">下一页</a>
 		<a href="javascript:login();">末页</a>
-		<a href="javascript:login();">共0页</a>
+		<a href="javascript:login();">共<%=pDividePage.getCountpager()%>页 共<%=pDividePage.getRecoderCount() %>条记录</a>
 </form>
 </body>
 </html>
