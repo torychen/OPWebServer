@@ -30,7 +30,7 @@ function firstPage(){
 		alert("已经是第一页数据");
 		return false;
 	}else{
-		submitForm("<%=context %>/sublist/SublistServlet?pageNum=1");
+		submitForm("<%=context %>/Servlet?pageNum=1");
 		return true;
 	}
 }
@@ -41,7 +41,7 @@ function nextPage(){
 		alert("已经是最后一页数据");
 		return false;
 	}else{
-		submitForm("<%=context %>/sublist/SublistServlet?pageNum=" + (currentPage+1));
+		submitForm("<%=context %>/SublistServlet?pageNum=" + (currentPage+1));
 		return true;
 	}
 }
@@ -52,7 +52,7 @@ function previousPage(){
 		alert("已经是第一页数据");
 		return false;
 	}else{
-		submitForm("<%=context %>/sublist/SublistServlet?pageNum=" + (currentPage-1));
+		submitForm("<%=context %>/SublistServlet?pageNum=" + (currentPage-1));
 		return true;
 	}
 }
@@ -63,7 +63,7 @@ function lastPage(){
 		alert("已经是最后一页数据");
 		return false;
 	}else{
-		submitForm("<%=context %>/sublist/SublistServlet?pageNum=${result.totalPage}");
+		submitForm("<%=context %>/SublistServlet?pageNum=${result.totalPage}");
 		return true;
 	}
 }
@@ -94,7 +94,7 @@ function initPage(){
 			<font color="red">${errorMsg }</font>
 		</div>
 		<div>
-			<form action="<%=context %>/sublist/SublistServlet"   id="stuForm"  method="post">
+			<form action="<%=context %>/SublistServlet"   id="stuForm"  method="post">
 				姓名
 				<input type="text" name="stuName" id="stu_name" style="width:120px" value="${stuName }">
 				 

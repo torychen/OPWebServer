@@ -75,7 +75,7 @@ public class SublistServlet extends HttpServlet {
 				pageNum, pageSize);
 		// 返回结果到页面
 		request.setAttribute("result", result);
-		request.getRequestDispatcher("sublistStudent.jsp").forward(request,
+		request.getRequestDispatcher("index.jsp").forward(request,
 				response);
 	}
 }

@@ -57,7 +57,8 @@ public class DBUtil {
 			connection = DriverManager.getConnection(URL, UESRNAME, PASSWORD);
 			flag = true;
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("Fail to getConnection!");
+			e.printStackTrace();
 		}
 		return flag;
 	}

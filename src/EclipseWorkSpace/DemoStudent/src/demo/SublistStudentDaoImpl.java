@@ -27,7 +27,7 @@ public class SublistStudentDaoImpl implements StudentDao{
 		List<Object> paramList = new ArrayList<Object>();
 		String stuName = searchModel.getStuName();
 		int gender = searchModel.getGender();
-		StringBuilder sql = new StringBuilder("select * from t_student where 1=1");
+		StringBuilder sql = new StringBuilder("select * from studentdemo where 1=1");
 		if(stuName != null && !stuName.equals("")){
 			sql.append(" and stu_name like ?");
 			paramList.add("%"+stuName+"%");
@@ -39,7 +39,14 @@ public class SublistStudentDaoImpl implements StudentDao{
 		DBUtil jdbcUtil = null;
 		try {
 			jdbcUtil = new DBUtil();
-			jdbcUtil.getConnection();
+			boolean flag = jdbcUtil.getConnection();
+			if (!flag) {
+				System.out.println("Fail to get connection!");
+				return null;
+			} else {
+				System.out.println("Get connection OK. The sql is " + sql.toString());
+			}
+			
 			List<Map<String, Object>> mapList = jdbcUtil.findResult(sql.toString(), paramList);
 			if(mapList != null){
 				for(Map<String, Object> map : mapList){
