@@ -12,6 +12,7 @@ public class QueryQuesionDao implements QueryQuestionService {
 	private DBUtil dbUtil;
 	
 	private int number;//number per page
+	private int currentNum;
 	
 	public QueryQuesionDao() {
 		dbUtil = new DBUtil();
@@ -40,6 +41,27 @@ public class QueryQuesionDao implements QueryQuestionService {
 	public List<Map<String, Object>> listQuestion() {
 		int number = 10;
 		return listQuestion(number);
+	}
+
+	@Override
+	public List<Map<String, Object>> listQuestion(int start, int total) {
+		this.currentNum = start;
+
+		String sql = "select * from question limit ?, ?";
+		
+		
+		List<Map<String, Object>> maps = null;
+
+		try {
+			dbUtil.getConnection();
+			maps = dbUtil.findMoreList(sql, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbUtil.release();
+		}
+
+		return maps;
 	}
 
 }

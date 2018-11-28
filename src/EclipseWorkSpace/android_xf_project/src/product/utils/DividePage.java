@@ -3,24 +3,24 @@ package product.utils;
 import org.apache.commons.lang.Validate;
 
 public class DividePage {
-	private int Pagersize;// Ã¿Ò»Ò³ÏÔÊ¾µÄÌõÊı
-	private int recoderCount;// ¼ÇÂ¼µÄ×ÜÊı
-	private int currentpager;// µ±Ç°µÄÒ³
+	private int Pagersize;// æ¯ä¸€é¡µæ˜¾ç¤ºçš„æ¡æ•°
+	private int recoderCount;// è®°å½•çš„æ€»æ•°
+	private int currentpager;// å½“å‰çš„é¡µ
 
 	public DividePage(int Pagersize, int recoderCount, int currentpager) {
 		// TODO Auto-generated constructor stub
-		this.Pagersize = Pagersize;// Ã¿Ò»Ò³µÄÊıÄ¿
-		this.recoderCount = recoderCount;// ×ÜÊı
-		setCurrentpager(currentpager);// ÉèÖÃµ±Ç°µÄÒ³
+		this.Pagersize = Pagersize;// æ¯ä¸€é¡µçš„æ•°ç›®
+		this.recoderCount = recoderCount;// æ€»æ•°
+		setCurrentpager(currentpager);// è®¾ç½®å½“å‰çš„é¡µ
 	}
 
 	public DividePage(int Pagersize, int recoderCount) {
 		// TODO Auto-generated constructor stub
-		this(Pagersize, recoderCount, 1);// ±íÊ¾µÄÊÇÎÒµ±Ç°ÏÔÊ¾µÄÒ³¾ÍÊÇµÚÒ»Ò³
+		this(Pagersize, recoderCount, 1);// è¡¨ç¤ºçš„æ˜¯æˆ‘å½“å‰æ˜¾ç¤ºçš„é¡µå°±æ˜¯ç¬¬ä¸€é¡µ
 
 	}
 
-	// »ñµÃ×ÜÒ³Êı
+	// è·å¾—æ€»é¡µæ•°
 	public int getCountpager() {
 		int size = recoderCount / Pagersize;
 		int mod = recoderCount % Pagersize;
@@ -31,32 +31,32 @@ public class DividePage {
 	}
 
 	// ////////////////////////////
-	// ¿ªÊ¼¼ÇÂ¼µÄÌõÊı Ò²¾ÍÊÇ·ÖÒ³µÄÆğÊ¼Î»ÖÃ ÕâÀïÊÇÆğÎ»ÖÃ
+	// å¼€å§‹è®°å½•çš„æ¡æ•° ä¹Ÿå°±æ˜¯åˆ†é¡µçš„èµ·å§‹ä½ç½® è¿™é‡Œæ˜¯èµ·ä½ç½®
 	public int getFormIndex() {
 		return (currentpager - 1) * Pagersize;
 	}
 
 	// ////////////////////////////////////////
-	// ÕâÀïÊÇ½áÊøµÄÎ»ÖÃ
+	// è¿™é‡Œæ˜¯ç»“æŸçš„ä½ç½®
 	public int getTopager() {
 		return Pagersize;
 	}
 
 	// //////////////////////////////////////////
-	// ·Éµ±Ç°µÄÒ³
+	// é£å½“å‰çš„é¡µ
 	public int getCurrentPager() {
-		return currentpager;// ·µ»Øµ±Ç°Ò³
+		return currentpager;// è¿”å›å½“å‰é¡µ
 	}
 
 	// ////////////////////////////////////
-	// ÉèÖÃµ±Ç°µÄÒ³
+	// è®¾ç½®å½“å‰çš„é¡µ
 	public void setCurrentpager(int CurrentPager) {
 		// int validpager = CurrentPager <= 0 ? 1 : CurrentPager;//
-		// ÒªÊÇµ±Ç°Ò³Ğ¡ÓÚµÈÓÚ0¾ÍÉèÖÃÎªµÚÒ»Ò³
+		// è¦æ˜¯å½“å‰é¡µå°äºç­‰äº0å°±è®¾ç½®ä¸ºç¬¬ä¸€é¡µ
 		// validpager = validpager > getCurrentPager() ? getCountpager()
-		// : validpager;// ÒªÊÇµ±Ç°Ò³´óÓÚ×ÜÒ³Êı ¾ÍÉèÖÃÎª×îºóÒ»Ò³
+		// : validpager;// è¦æ˜¯å½“å‰é¡µå¤§äºæ€»é¡µæ•° å°±è®¾ç½®ä¸ºæœ€åä¸€é¡µ
 		////////////////////////////////////
-		//×ÜÖ®±£´æÔÚ·¶Î§ÄÚ¾ÍĞĞÁË 
+		//æ€»ä¹‹ä¿å­˜åœ¨èŒƒå›´å†…å°±è¡Œäº† 
 		int validpager = CurrentPager;
 		if (CurrentPager <= 0) {
 			validpager = 1;
@@ -64,29 +64,29 @@ public class DividePage {
 			validpager = getCountpager();
 		}
 
-		this.currentpager = validpager;// ÉèÖÃµ±Ç°Ò³
+		this.currentpager = validpager;// è®¾ç½®å½“å‰é¡µ
 	}
 
 	// //////////////////
-	// »ñµÃÃ¿Ò»Ò³µÄ¼ÇÂ¼ÊıÄ¿
+	// è·å¾—æ¯ä¸€é¡µçš„è®°å½•æ•°ç›®
 	public int getPageSize() {
 		return Pagersize;
 	}
 
 	// //////////////////////////////////////////
-	// ÉèÖÃÃ¿Ò»Ò³µÄ¼ÇÂ¼ÊıÄ¿
+	// è®¾ç½®æ¯ä¸€é¡µçš„è®°å½•æ•°ç›®
 	public void setPagerSize(int pagerSize) {
 		this.Pagersize = pagerSize;
 	}
 
 	// ////////////////////////////////////////
-	// »ñµÃÎÒµÄ¼ÇÂ¼×ÜÊı
+	// è·å¾—æˆ‘çš„è®°å½•æ€»æ•°
 	public int getRecoderCount() {
 		return recoderCount;//
 	}
 
 	// ///////////////////////////////
-	// ÉèÖÃÎÒµÄ¼ÇÂ¼×ÜÊı
+	// è®¾ç½®æˆ‘çš„è®°å½•æ€»æ•°
 	public void setRecoderCount(int recoderCount) {
 		this.recoderCount = recoderCount;
 	}

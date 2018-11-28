@@ -1,7 +1,7 @@
-package util;
+package myutil;
 
 
-public class Util {
+public class MyUtil {
 	public static boolean isEmpty(String string) {
 		boolean flag = false;
 		if (string == null || string == "") {
@@ -10,13 +10,14 @@ public class Util {
 		return flag;
 	}
 	
-	public void dbg(String msg) {
+	public static void dbg(String msg) {
 		System.out.println(msg);
 	}
 	
-	public void dbgg(String msg) {
+	public static void dbgg(String msg) {
 		//Do nothing just disable dbg by a additonal 'g'
 		
 	}
+
 
 }

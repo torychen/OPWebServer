@@ -15,6 +15,8 @@ import java.util.Map;
 
 import com.mysql.jdbc.Statement;
 
+import myutil.*;
+
 
 public class DBUtil implements IDBUtil {
 	// ///////////////////////////////////////////////////////////////////////
@@ -60,6 +62,28 @@ public class DBUtil implements IDBUtil {
 			// TODO: handle exception
 		}
 		return flag;
+	}
+	
+	public int getRecordCount(String tableName) {
+		int count = 0;
+		
+		String sql = "select count(*) from ";
+		StringBuffer buffer = new StringBuffer(sql);
+		buffer.append(tableName);
+		
+		MyUtil.dbg(buffer.toString());
+		
+		try {
+			psStatement = connection.prepareStatement(buffer.toString());
+			resultSet = psStatement.executeQuery();// 返回单条记录
+			resultSet.next();
+			count = resultSet.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return (count <= 0 ? 0 : count);
 	}
 
 	/**	

@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.SubmitQuestionDao;
+import myutil.*;
 import service.SubmitQuestionService;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import util.*;
 
 /**
  * Servlet implementation class SubmitQuestionAction
@@ -57,7 +57,7 @@ public class SubmitQuestionAction extends HttpServlet {
 		// request.getParameter("<name>");
 		//TODO  how to handle various input?
 		String body = request.getParameter("body");
-		if (Util.isEmpty(body)) {
+		if (MyUtil.isEmpty(body)) {
 			response.getWriter().write("问题不能为空。3秒钟跳到主页");
 			response.setHeader("refresh", path);
 			return;
@@ -66,12 +66,12 @@ public class SubmitQuestionAction extends HttpServlet {
 		//System.out.println("Body is" + body);
 		
 		String answer = request.getParameter("answer");
-		if (Util.isEmpty(answer)) {
+		if (MyUtil.isEmpty(answer)) {
 			answer = "na";
 		}
 		
 		String submitter = request.getParameter("submitter");
-		if (Util.isEmpty(submitter)) {
+		if (MyUtil.isEmpty(submitter)) {
 			submitter = "xiao ming";//为什么用小明，数据库中是乱码？
 		}
 		

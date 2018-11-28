@@ -8,6 +8,8 @@ import java.util.Map;
 
 import org.apache.commons.collections.set.MapBackedSet;
 
+import myutil.MyUtil;
+
 public class TestDBUtil {
 	
 	public static void main(String[] args) {
@@ -42,8 +44,8 @@ public class TestDBUtil {
 			System.out.println("error to update question.");
 		}*/
 		
-		//Test query db
-		String sql = "select * from question";
+		//Test query db ok
+		/*String sql = "select * from question";
 		List<Map<String, Object>> maps = null;
 		try {
 			 maps = dbUtil.findMoreList(sql, null);
@@ -63,7 +65,14 @@ public class TestDBUtil {
 			
 		} else {
 			System.out.println("no data return!");
-		}
+		}*/
+		
+		//Test getCount
+		int count = dbUtil.getRecordCount("user");
+		MyUtil.dbg("user count is " + count);
+		
+		count = dbUtil.getRecordCount("question");
+		MyUtil.dbg("question count is " + count);
 		
 		 
 		
