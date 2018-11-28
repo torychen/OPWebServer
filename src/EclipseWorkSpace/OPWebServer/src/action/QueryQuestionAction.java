@@ -31,13 +31,7 @@ public class QueryQuestionAction extends HttpServlet {
         super();
     }
 
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
-	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
-	}
-
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -55,9 +49,14 @@ public class QueryQuestionAction extends HttpServlet {
 		
 		String path = request.getContextPath();
 		
-		//List<Map<String, Object>> maps = service.listQuestion();
 		List<Map<String, Object>> maps = null;
 		
+		try {
+			maps = service.listQuestion();
+		} catch (Exception e) {
+			System.out.println("Error when query db.");
+		}
+
 		if ((maps == null) || (maps.size() == 0)) {
 			System.out.println("no data return!");
 			

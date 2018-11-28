@@ -12,18 +12,17 @@ public class QueryQuesionDao implements QueryQuestionService {
 	private DBUtil dbUtil;
 	
 	private int number;//number per page
-	private boolean flag;//order or reverse order
+	
 	public QueryQuesionDao() {
 		dbUtil = new DBUtil();
 	}
 	
 	@Override
-	public List<Map<String, Object>> listQuestion(int number, boolean flag) {
-		this.flag = flag;
+	public List<Map<String, Object>> listQuestion(int number) {
 		this.number=number;
 		
 		String sql = "select * from question";
-		List<Map<String, Object>> maps = new ArrayList<Map<String,Object>>();
+		List<Map<String, Object>> maps = null;
 		
 		try {
 			dbUtil.getConnection();
@@ -40,8 +39,7 @@ public class QueryQuesionDao implements QueryQuestionService {
 	@Override
 	public List<Map<String, Object>> listQuestion() {
 		int number = 10;
-		boolean flag = true;
-		return listQuestion(number, flag);
+		return listQuestion(number);
 	}
 
 }
