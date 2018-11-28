@@ -74,6 +74,9 @@ public class TestDBUtil {
 		count = dbUtil.getRecordCount("question");
 		MyUtil.dbg("question count is " + count);
 		
+		count = dbUtil.getRecordCount("invalid-table-name");
+		MyUtil.dbg("count is " + count);
+		
 		 
 		
 		dbUtil.release();

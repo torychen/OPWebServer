@@ -71,16 +71,16 @@ public class DBUtil implements IDBUtil {
 		StringBuffer buffer = new StringBuffer(sql);
 		buffer.append(tableName);
 		
-		MyUtil.dbg(buffer.toString());
+		//MyUtil.dbg(buffer.toString());
 		
 		try {
 			psStatement = connection.prepareStatement(buffer.toString());
 			resultSet = psStatement.executeQuery();// 返回单条记录
-			resultSet.next();
-			count = resultSet.getInt(1);
+			if (resultSet.next()) {
+				count = resultSet.getInt(1);
+			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			MyUtil.dbg("Error no result get from the table: " + tableName);
 		}
 		
 		return (count <= 0 ? 0 : count);
