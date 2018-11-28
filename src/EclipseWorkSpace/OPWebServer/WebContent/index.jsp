@@ -19,7 +19,7 @@
         </form>
         
         <br>
-        <form name="query" action="queryQuestion" method="post" accept-charset="UTF-8">
+        <form name="query" action="queryQuestion?pageNum=1" method="post" accept-charset="UTF-8">
         	<input type = "submit" value = "查询已有问题">
         </form>
  

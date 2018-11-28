@@ -21,21 +21,28 @@ th, tr, td, table {
 </style>
 
 <script type="text/javascript">
-	function login() {
-		alert("用户名 不能为空!!!!");
-	
-		return;
-
-		
-		/*
-		if (th.password.value == "") {
-			alert("密码 不能为空!!!!");
-			th.password.focus();
-			return;
-		}
-		th.action = "<%=path%>/servlet/LoginAction";
+	function  firstPage(){
+		var th=document.form1;
+		th.action="<%=path%>/queryQuestion?pageNum=1";//显示第一页
 		th.submit();
-		*/
+	}
+	
+	function previousPage() {
+		var th = document.form1;
+		th.action = "<%=path%>/queryQuestion?pageNum=<%=pDividePage.getCurrentPager()-1%>";//显示上一页
+		th.submit();
+	}
+	
+	function nextPage() {
+		var th = document.form1;
+			th.action = "<%=path%>/queryQuestion?pageNum=<%=pDividePage.getCurrentPager()+1%>";//显示下一页
+		th.submit();
+	}
+	
+	function lastPage() {
+		var th = document.form1;
+			th.action = "<%=path%>/queryQuestion?pageNum=<%=pDividePage.getCountpager()%>";
+		th.submit();
 	}
 </script>
 
@@ -43,7 +50,7 @@ th, tr, td, table {
 </head>
 
 <body>
-<form action="" name="form1">
+<form action="" name="form1" method="post">
 	<table>
 		<tr>
 			<th>title</th>
@@ -71,11 +78,11 @@ th, tr, td, table {
 
 		</table>
 		
-		<a href="javascript:login();">首页</a>
-		<a href="javascript:login();">上一页</a>
-		<a href="javascript:login();">下一页</a>
-		<a href="javascript:login();">末页</a>
-		<a href="javascript:login();">共<%=pDividePage.getCountpager()%>页 共<%=pDividePage.getRecoderCount() %>条记录</a>
+		<a href="javascript:firstPage();">首页</a>
+		<a href="javascript:previousPage();">上一页</a>
+		<a href="javascript:nextPage();">下一页</a>
+		<a href="javascript:lastPage();">末页</a>
+		<a href="javascript:void(0);">当前为第<%=pDividePage.getCurrentPager() %>页 共<%=pDividePage.getCountpager()%>页 共<%=pDividePage.getRecoderCount() %>条记录</a>
 </form>
 </body>
 </html>

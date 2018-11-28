@@ -50,22 +50,30 @@ public class QueryQuestionAction extends HttpServlet {
 		
 		String path = request.getContextPath();
 		int recordCount = service.getRecordCount();
-		MyUtil.dbg("recordCount is " + recordCount);
+		//MyUtil.dbg("recordCount is " + recordCount);
 		
 		int currentPage = 1;// 设置为第一页
 		String pageNum = request.getParameter("pageNum");
 		if (pageNum != null) {
+			//MyUtil.dbg("get pageNum is "+ pageNum);
+			
 			currentPage = Integer.parseInt(pageNum);
+			
 		}
+		
+		currentPage = currentPage <= 0 ? 1 : currentPage;
+		//MyUtil.dbg("currentPageNum is " + currentPage);
 		
 		int pageSize = 5;// 显示的条数
 		DividePage pDividePage = new DividePage(pageSize, recordCount, currentPage);
 		int start = pDividePage.getStartIndex();// 显示条目的初始位置
+		//MyUtil.dbg("start is " + start);
+		
 		List<Map<String, Object>> maps = null;
 		
 		try {
 			maps = service.listQuestion(start, pageSize);
-			MyUtil.dbg("map size is " + maps.size());
+			//MyUtil.dbg("map size is " + maps.size());
 		} catch (Exception e) {
 			System.out.println("Error when query db.");
 		}
