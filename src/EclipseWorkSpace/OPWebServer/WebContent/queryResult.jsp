@@ -13,7 +13,7 @@
 <title>Hello this queryResult.jsp</title>
 <style>
 th, tr, td, table {
-	border: 1px solid red;
+	border: 1px solid black;
 }
 </style>
 </head>

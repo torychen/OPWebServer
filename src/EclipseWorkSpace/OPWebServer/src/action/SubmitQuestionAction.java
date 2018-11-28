@@ -40,6 +40,7 @@ public class SubmitQuestionAction extends HttpServlet {
 		//Just use doPost method.
 		this.doPost(request, response);
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -49,16 +50,20 @@ public class SubmitQuestionAction extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
-
+		String path = request.getContextPath();
+		path = "3;url=" + path + "/index.jsp";
+		//System.out.println("path is " + path);
+		
 		// request.getParameter("<name>");
 		//TODO  how to handle various input?
 		String body = request.getParameter("body");
 		if (Util.isEmpty(body)) {
+			response.getWriter().write("问题不能为空。3秒钟跳到主页");
+			response.setHeader("refresh", path);
 			return;
 		}
 		
-		System.out.println("Body is" + body);
-		
+		//System.out.println("Body is" + body);
 		
 		String answer = request.getParameter("answer");
 		if (Util.isEmpty(answer)) {
@@ -83,48 +88,16 @@ public class SubmitQuestionAction extends HttpServlet {
 		
 		boolean flag = service.submitQuestion(param);
 		
-		PrintWriter out = response.getWriter();
-		
 		if (flag) {
-			//Thanks for your submission.
-			out.println(
-	                "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" +" +
-	                          "http://www.w3.org/TR/html4/loose.dtd\">\n" +
-	                      "<html> \n" +
-	                        "<head> \n" +
-	                          "<meta http-equiv=\"Content-Type\" content=\"text/html; " +
-	                            "charset=UTF-8\"> \n" +
-	                          "<title> Thanks for your submition.  </title> \n" +
-	                        "</head> \n" +
-	                        "<body> <div align='center'> \n" +
-	                          "<style= \"font-size=\"12px\" color='black'\"" + "\">" +
-	                            "Thank you for your submission at " + datetime + ". <br> " + 
-	                        "</font></body> \n" +
-	                      "</html>" 
-	                );
-	        
+			response.getWriter().write("提交成功！3秒钟跳到主页");
 		} else {
-			//Sorry for something wrong when update DB.
-			out.println(
-	                "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" +" +
-	                          "http://www.w3.org/TR/html4/loose.dtd\">\n" +
-	                      "<html> \n" +
-	                        "<head> \n" +
-	                          "<meta http-equiv=\"Content-Type\" content=\"text/html; " +
-	                            "charset=UTF-8\"> \n" +
-	                          "<title> Thanks for your submition.  </title> \n" +
-	                        "</head> \n" +
-	                        "<body> <div align='center'> \n" +
-	                          "<style= \"font-size=\"12px\" color='black'\"" + "\">" +
-	                            "Sorry. Fail to submit. Please try again later." + " <br> " + 
-	                        "</font></body> \n" +
-	                      "</html>" 
-	                );
+			
+			response.getWriter().write("提交失败！3秒钟跳到主页");
 		}
-	
 		
-		out.flush();
-		out.close();
+		response.setHeader("refresh", path);
+		
+		return;
 	}
 	
 	/**

@@ -32,7 +32,7 @@
 
 <body>
 	<!-- my implementation -->
-	<form action="submitQuestion" method="post" accept-charset="UTF-8">
+	<form action="submitQuestion" method="get" accept-charset="UTF-8">
 		<fieldset>
 			<p>
 				<label for="body">我的问题是(必填):</label>

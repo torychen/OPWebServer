@@ -40,9 +40,8 @@ public class DBUtil implements IDBUtil {
 	public DBUtil() {
 		try {
 			Class.forName(DRIVER);
-			System.out.println("注册驱动成功!!!");
-			System.out.println("java.version="
-					+ System.getProperty("java.version"));
+			//System.out.println("注册驱动成功!!!");
+			//System.out.println("java.version=" + System.getProperty("java.version"));
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("注册驱动 error !!!");

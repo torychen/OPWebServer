@@ -9,5 +9,14 @@ public class Util {
 		}
 		return flag;
 	}
+	
+	public void dbg(String msg) {
+		System.out.println(msg);
+	}
+	
+	public void dbgg(String msg) {
+		//Do nothing just disable dbg by a additonal 'g'
+		
+	}
 
 }
