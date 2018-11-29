@@ -1,6 +1,7 @@
 package action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,9 +14,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import dao.QueryQuesionDao;
 import service.QueryQuestionService;
 import myutil.*;
+import product.json.JsonTools;
 
 /**
  * Servlet implementation class QueryQuestionAction
@@ -93,9 +97,27 @@ public class QueryQuestionAction extends HttpServlet {
 			maps.add(map);
 		}
 		
-		request.setAttribute("pDividePage", pDividePage);// 把参数传给用户
-		request.setAttribute("listQuestion", maps);
-		request.getRequestDispatcher("/queryResult.jsp").forward(request,response);
+		/* ut pass Gson gson = new Gson();
+		String json = gson.toJson(maps);
+		MyUtil.dbg("the json string is: ");
+		MyUtil.dbg(json);*/
+		
+		
+		String actionFlag = request.getParameter("actionFlag");
+		if (actionFlag.equals("json")) {
+			PrintWriter out = response.getWriter();
+			Gson gson = new Gson();
+			String json = gson.toJson(maps);
+			out.println(json);
+			out.flush();
+			out.close();
+			
+		} else {
+			request.setAttribute("pDividePage", pDividePage);// 把参数传给用户
+			request.setAttribute("listQuestion", maps);
+			request.getRequestDispatcher("/queryResult.jsp").forward(request,response);
+		}
+		
 	}
 		
 	/**
