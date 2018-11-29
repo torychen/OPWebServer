@@ -77,7 +77,7 @@ th, tr, td, table {
 		%>
 
 		</table>
-		
+		<a href="index.jsp">回主页</a>
 		<a href="javascript:firstPage();">首页</a>
 		<a href="javascript:previousPage();">上一页</a>
 		<a href="javascript:nextPage();">下一页</a>

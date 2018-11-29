@@ -77,7 +77,7 @@ public class SubmitQuestionAction extends HttpServlet {
 		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String datetime = df.format(new Date());
-		System.out.println(datetime);
+		//System.out.println(datetime);
 		
 		List<Object> param = new ArrayList<Object>();
 		param.add(body);

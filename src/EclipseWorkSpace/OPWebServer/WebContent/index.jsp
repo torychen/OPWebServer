@@ -19,8 +19,13 @@
         </form>
         
         <br>
-        <form name="query" action="queryQuestion?pageNum=1" method="post" accept-charset="UTF-8">
+        <form name="query" action="queryQuestion?pageNum=1&actionFlag=htm" method="post" accept-charset="UTF-8">
         	<input type = "submit" value = "查询已有问题">
+        </form>
+        
+        <br>        
+        <form name="query" action="queryQuestion?pageNum=1&actionFlag=json" method="post" accept-charset="UTF-8">
+        	<input type = "submit" value = "查询已有问题返回json">
         </form>
  
 </div>
