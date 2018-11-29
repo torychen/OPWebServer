@@ -1,4 +1,4 @@
-package product.service;
+锘縫ackage product.service;
 
 import java.util.List;
 import java.util.Map;
@@ -15,5 +15,5 @@ public interface ProductService {
     
 	public  boolean deleteProduct(String[] ids);
 	
-	public Map<String, Object>  viewProduct(String proid);//查看详细信息
+	public Map<String, Object>  viewProduct(String proid);//鏌ョ湅璇︾粏淇℃伅
 }

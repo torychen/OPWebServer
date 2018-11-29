@@ -7,16 +7,13 @@ public class DividePage {
 	private int currentpager;// 当前的页
 
 	public DividePage(int Pagersize, int recoderCount, int currentpager) {
-		// TODO Auto-generated constructor stub
 		this.Pagersize = Pagersize;// 每一页的数目
 		this.recoderCount = recoderCount;// 总数
 		setCurrentpager(currentpager);// 设置当前的页
 	}
 
 	public DividePage(int Pagersize, int recoderCount) {
-		// TODO Auto-generated constructor stub
 		this(Pagersize, recoderCount, 1);// 表示的是我当前显示的页就是第一页
-
 	}
 
 	// 获得总页数
@@ -31,7 +28,7 @@ public class DividePage {
 
 	// ////////////////////////////
 	// 开始记录的条数 也就是分页的起始位置 这里是起位置
-	public int getFormIndex() {
+	public int getStartIndex() {
 		return (currentpager - 1) * Pagersize;
 	}
 
@@ -42,7 +39,6 @@ public class DividePage {
 	}
 
 	// //////////////////////////////////////////
-	// 飞当前的页
 	public int getCurrentPager() {
 		return currentpager;// 返回当前页
 	}

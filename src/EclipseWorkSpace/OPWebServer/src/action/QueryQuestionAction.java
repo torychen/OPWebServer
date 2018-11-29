@@ -49,16 +49,37 @@ public class QueryQuestionAction extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		String path = request.getContextPath();
+		int recordCount = service.getRecordCount();
+		//MyUtil.dbg("recordCount is " + recordCount);
+		
+		int currentPage = 1;// 设置为第一页
+		String pageNum = request.getParameter("pageNum");
+		if (pageNum != null) {
+			//MyUtil.dbg("get pageNum is "+ pageNum);
+			
+			currentPage = Integer.parseInt(pageNum);
+			
+		}
+		
+		currentPage = currentPage <= 0 ? 1 : currentPage;
+		//MyUtil.dbg("currentPageNum is " + currentPage);
+		
+		int pageSize = 5;// 显示的条数
+		DividePage pDividePage = new DividePage(pageSize, recordCount, currentPage);
+		int start = pDividePage.getStartIndex();// 显示条目的初始位置
+		//MyUtil.dbg("start is " + start);
 		
 		List<Map<String, Object>> maps = null;
 		
 		try {
-			maps = service.listQuestion();
+			maps = service.listQuestion(start, pageSize);
+			//MyUtil.dbg("map size is " + maps.size());
 		} catch (Exception e) {
 			System.out.println("Error when query db.");
 		}
-
+		
 		if ((maps == null) || (maps.size() == 0)) {
+			//For debug purpose.
 			System.out.println("no data return!");
 			
 			Map<String, Object> map = new HashMap<>();
@@ -72,13 +93,7 @@ public class QueryQuestionAction extends HttpServlet {
 			maps.add(map);
 		}
 		
-		int recoderCount = 5;
-		int currentpager = 1;
-		DividePage pDividePage = new DividePage(5, recoderCount, currentpager);
-		int start = pDividePage.getFormIndex();// 显示条目的初始位置
-		int end = pDividePage.getTopager();// 显示的条数
 		request.setAttribute("pDividePage", pDividePage);// 把参数传给用户
-		request.setAttribute("proname", "guest");
 		request.setAttribute("listQuestion", maps);
 		request.getRequestDispatcher("/queryResult.jsp").forward(request,response);
 	}
