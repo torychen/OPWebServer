@@ -19,7 +19,7 @@ import com.google.gson.Gson;
 import dao.QueryQuesionDao;
 import service.QueryQuestionService;
 import myutil.*;
-import product.json.JsonTools;
+
 
 /**
  * Servlet implementation class QueryQuestionAction
@@ -97,14 +97,9 @@ public class QueryQuestionAction extends HttpServlet {
 			maps.add(map);
 		}
 		
-		/* ut pass Gson gson = new Gson();
-		String json = gson.toJson(maps);
-		MyUtil.dbg("the json string is: ");
-		MyUtil.dbg(json);*/
-		
-		
 		String actionFlag = request.getParameter("actionFlag");
-		if (actionFlag.equals("json")) {
+		
+		if ((actionFlag != null) && (actionFlag.equals("json"))) {
 			PrintWriter out = response.getWriter();
 			Gson gson = new Gson();
 			String json = gson.toJson(maps);
